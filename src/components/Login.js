@@ -7,9 +7,9 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { BG_URL, USER_AVATAR } from "../utils/constants";
 
 const Login = () => {
   const dispatch = useDispatch(),
@@ -18,7 +18,6 @@ const Login = () => {
     email = useRef(null),
     name = useRef(null),
     password = useRef(null);
-  const navigate = useNavigate();
 
   const toggleSignInForm = () => {
     setErrorMessage(null);
@@ -46,8 +45,7 @@ const Login = () => {
           const user = userCredential.user;
           updateProfile(user, {
             displayName: name.current.value,
-            photoURL:
-              "https://occ-0-6247-2164.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABdpkabKqQAxyWzo6QW_ZnPz1IZLqlmNfK-t4L1VIeV1DY00JhLo_LMVFp936keDxj-V5UELAVJrU--iUUY2MaDxQSSO-0qw.png?r=e6e",
+            photoURL: USER_AVATAR,
           })
             .then(() => {
               const { uid, email, displayName, photoURL } = auth.currentUser;
@@ -60,7 +58,6 @@ const Login = () => {
                   photoURL,
                 })
               );
-              navigate("/browse");
             })
             .catch((error) => {
               setErrorMessage({
@@ -84,7 +81,6 @@ const Login = () => {
       )
         .then((userCredential) => {
           // Signed in
-          navigate("/browse");
           // ...
         })
         .catch((error) => {
@@ -100,10 +96,7 @@ const Login = () => {
     <div>
       <Header />
       <div className="absolute">
-        <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/dc1cf82d-97c9-409f-b7c8-6ac1718946d6/14a8fe85-b6f4-4c06-8eaf-eccf3276d557/IN-en-20230911-popsignuptwoweeks-perspective_alpha_website_large.jpg"
-          alt="logo"
-        ></img>
+        <img src={BG_URL} alt="logo"></img>
       </div>
       <form
         onSubmit={(e) => e.preventDefault()}
