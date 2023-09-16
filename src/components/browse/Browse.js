@@ -5,7 +5,7 @@ import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
 
 const Browse = () => {
-  const movies = useSelector((store) => store.movies.nowPlayingMovies);
+  const movies = useSelector((store) => store.movies?.nowPlayingMovies);
 
   useNowPlayingMovies();
   return (

@@ -8,9 +8,12 @@ const useNowPlayingMovies = () => {
 
   const getNowPlayingMovies = async () => {
     const data = await fetch(
-      "https://api.themoviedb.org/3/movie/now_playing?page=1",
+      "https://api.themoviedb.org/3/movie/now_playing?api_key=" +
+        process.env.REACT_APP_TMDB_KEY +
+        "&page=1",
       API_OPTIONS
     );
+
     const json = await data.json();
     dispatch(addNowPlayingMovies(json.results));
   };

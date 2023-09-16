@@ -22,6 +22,14 @@
 - Add hardcoded values to the contants file
 - Register TMBD API & create an app and get access token
 - Get data from TMBD now playing movie list API
+- Cutom Hooks created for Now Playing Movies
+- Create movieSlice
+- Updates store data with movies data
+- Planed for MainCOntainer & Secondary conatiner
+- Fetch Data fro trailer Video
+- Update Store with Trailer Video Data
+- Embedded the YouTube video and make it autoplay and muted video
+- Tailwind Classes to make MainContainer UI look awesome
 
 # Features
 - Login/Sign up 

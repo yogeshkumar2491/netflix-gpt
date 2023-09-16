@@ -7,10 +7,6 @@ export const BG_URL =
 export const USER_AVATAR =
   "https://occ-0-6247-2164.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABdpkabKqQAxyWzo6QW_ZnPz1IZLqlmNfK-t4L1VIeV1DY00JhLo_LMVFp936keDxj-V5UELAVJrU--iUUY2MaDxQSSO-0qw.png?r=e6e";
 
-const REACT_APP_TMDB_KEY = "9f966631e1523c181eeb86acd76b32d6";
-const REACT_APP_TMDB_TOKEN =
-  "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5Zjk2NjYzMWUxNTIzYzE4MWVlYjg2YWNkNzZiMzJkNiIsInN1YiI6IjYOY2EwZGJhYmYwOWQxMDEwMWYxODk2YiIsInNjb3BIcyI6WyJhcGIfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Y3RpHbTXBaxBgtKNokY1bssYf3BVYM746QHHmRFwjW8";
-
 export const API_OPTIONS = {
   method: "GET",
   headers: {
