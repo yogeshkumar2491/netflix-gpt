@@ -9,7 +9,7 @@ export const VideoTitle = ({ title, overview }) => {
         <button className="bg-white text-black p-4 px-12 text-xl rounded-md hover:bg-opacity-80">
           ▶️ Play
         </button>
-        <button className="bg-gray-500 text-white mx-2 p-4 px-12 text-xl bg-opacity-50 rounded-md">
+        <button className="bg-gray-500 text-white mx-2 p-4 px-12 text-xl bg-opacity-50 rounded-md hover:bg-opacity-80">
           More Info
         </button>
       </div>

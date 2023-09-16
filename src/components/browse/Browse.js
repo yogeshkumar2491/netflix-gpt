@@ -1,13 +1,16 @@
 import Header from "../Header";
-import { useSelector } from "react-redux";
 import useNowPlayingMovies from "../../hooks/useNowPlayingMovies";
+import usePopularMovies from "../../hooks/usePopularMovies";
+import useTopRatedMovies from "../../hooks/useTopRatedMovies";
+import useUpcomingMovies from "../../hooks/useUpcomingMovies";
 import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
 
 const Browse = () => {
-  const movies = useSelector((store) => store.movies?.nowPlayingMovies);
-
   useNowPlayingMovies();
+  usePopularMovies();
+  useTopRatedMovies();
+  useUpcomingMovies();
   return (
     <div>
       <Header />

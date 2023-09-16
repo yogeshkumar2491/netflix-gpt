@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 import { onAuthStateChanged } from "firebase/auth";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { LOGO } from "../utils/constants";
 
 const Header = () => {
@@ -33,11 +33,12 @@ const Header = () => {
 
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
+  const [showSignOut, setShowSignOut] = useState(false);
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {})
       .catch((error) => {
-        navigate("error");
+        navigate("/error");
       });
   };
   return (
@@ -45,14 +46,29 @@ const Header = () => {
       <img className="w-44" src={LOGO} alt="logo"></img>
 
       {user && (
-        <div className="flex p-2">
-          <img className="w-12 h-12 " alt="user-icon" src={user?.photoURL} />
-          <button
-            className="text-white font-bold"
-            onClick={() => handleSignOut()}
-          >
-            ( Sign Out )
-          </button>
+        <div className="flex flex-col p-2">
+          <img
+            onClick={() => {
+              setShowSignOut(!showSignOut);
+            }}
+            className="w-10 h-10 mr-12 rounded-xl"
+            alt="user-icon"
+            src={user?.photoURL}
+          />
+          {showSignOut && (
+            <div className="list-none py-2">
+              <li>
+                <ul className="text-white">
+                  <button
+                    className="text-white font-bold"
+                    onClick={() => handleSignOut()}
+                  >
+                    Sign Out
+                  </button>
+                </ul>
+              </li>
+            </div>
+          )}
         </div>
       )}
     </div>
