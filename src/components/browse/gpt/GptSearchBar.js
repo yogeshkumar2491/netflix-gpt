@@ -1,16 +1,20 @@
-import React, { useRef } from "react";
-import lang from "../../../utils/languageConstants";
-import { useSelector } from "react-redux";
-import { addGptMovieResult } from "../../../utils/gptSlice";
-import { useDispatch } from "react-redux";
-import { getGPTMovieResults } from "../../../utils/gptHelper";
+import { useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import lang from "../../../utils/locale/languageConstants";
+import { getGPTMovieResults } from "../../../utils/helper/gptHelper";
+import {
+  addGptMovieResult,
+  updateFetchStatus,
+} from "../../../utils/store/slices/gptSlice";
 
 const GptSearchBar = () => {
   const dispatch = useDispatch();
   const locale = useSelector((store) => store.config.locale);
+  const isFetching = useSelector((store) => store.gpt.isFetching);
   const seachText = useRef(null);
 
   const handleGPTSearchClick = async () => {
+    dispatch(updateFetchStatus());
     const gptResults = await getGPTMovieResults(seachText.current.value);
     dispatch(
       addGptMovieResult({
@@ -33,10 +37,11 @@ const GptSearchBar = () => {
           placeholder={lang[locale].gprSearchPlaceholder}
         />
         <button
+          disabled={isFetching}
           onClick={handleGPTSearchClick}
           className="m-2 md:m-4 py-2 rounded-lg px-4 col-span-3 bg-red-700 text-white"
         >
-          {lang[locale].search}
+          {isFetching ? lang[locale].fetching : lang[locale].search}
         </button>
       </form>
     </div>

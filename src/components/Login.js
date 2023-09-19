@@ -1,15 +1,15 @@
-import React, { useState, useRef } from "react";
-import Header from "./Header";
-import { checkValidData } from "../utils/validate";
+import { useState, useRef } from "react";
+import { useDispatch } from "react-redux";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import { auth } from "../utils/firebase";
-import { useDispatch } from "react-redux";
-import { addUser } from "../utils/userSlice";
 import { BG_URL, USER_AVATAR } from "../utils/constants";
+import { auth } from "../utils/config/firebase";
+import { checkValidData } from "../utils/validator/validate";
+import Header from "./Header";
+import { addUser } from "../utils/store/slices/userSlice";
 
 const Login = () => {
   const dispatch = useDispatch(),
@@ -91,12 +91,15 @@ const Login = () => {
         });
     }
   };
-
   return (
     <div>
       <Header />
       <div className="absolute">
-        <img className="h-screen object-cover" src={BG_URL} alt="logo"></img>
+        <img
+          className="h-screen object-cover md:w-screen  md:h-screen min-[840px]:h-screen max-[850px]:h-screen"
+          src={BG_URL}
+          alt="logo"
+        ></img>
       </div>
       <form
         onSubmit={(e) => e.preventDefault()}
@@ -123,7 +126,7 @@ const Login = () => {
         <input
           type="text"
           ref={email}
-          placeholder="Email or phone number"
+          placeholder="Email"
           className="p-4 my-4 w-full bg-gray-700 rounded-lg"
         />
         {errorMessage?.error === "email" && (

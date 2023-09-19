@@ -1,7 +1,7 @@
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./Login";
 import Browse from "./browse//Browse";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
+import PageNotFound from "./Error/PageNotFound";
 const Body = () => {
   const appRouter = createBrowserRouter([
     {
@@ -11,6 +11,11 @@ const Body = () => {
     {
       path: "/browse",
       element: <Browse />,
+      errorElement: <PageNotFound />,
+    },
+    {
+      path: "*",
+      element: <PageNotFound />,
     },
   ]);
 

@@ -1,14 +1,12 @@
-import { signOut } from "firebase/auth";
-import { auth } from "../utils/firebase";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addUser, removeUser } from "../utils/userSlice";
-import { onAuthStateChanged } from "firebase/auth";
-import { useEffect, useState } from "react";
-import { LOGO } from "../utils/constants";
-import { toggleGPTSearchView } from "../utils/gptSlice";
-import { SUPPORTED_LANGUAGES } from "../utils/constants";
-import { updateLocale } from "../utils/configSlice";
+import { signOut, onAuthStateChanged } from "firebase/auth";
+import { LOGO, SUPPORTED_LANGUAGES } from "../utils/constants";
+import { auth } from "../utils/config/firebase";
+import { addUser, removeUser } from "../utils/store/slices/userSlice";
+import { toggleGPTSearchView } from "../utils/store/slices/gptSlice";
+import { updateLocale } from "../utils/store/slices/configSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -81,26 +79,24 @@ const Header = () => {
           >
             {showGptSearch ? "Homepage" : "GPT Search"}
           </button>
+
           <img
             onClick={() => {
               setShowSignOut(!showSignOut);
             }}
-            className="w-10 h-10 mr-12 rounded-xl"
+            className="w-10 h-10 mt-[9px] mr-12 rounded-xl"
             alt="user-icon"
             src={user?.photoURL}
           />
+
           {showSignOut && (
-            <div className="list-none py-2">
-              <li>
-                <ul className="text-white">
-                  <button
-                    className="text-white font-bold"
-                    onClick={() => handleSignOut()}
-                  >
-                    Sign Out
-                  </button>
-                </ul>
-              </li>
+            <div className="absolute right-[4rem] z-10 mt-[4rem] w-50 origin-top-right rounded-md bg-gray-700 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <button
+                className="text-white block w-full px-4 py-2 text-left text-lg"
+                onClick={() => handleSignOut()}
+              >
+                Sign out
+              </button>
             </div>
           )}
         </div>

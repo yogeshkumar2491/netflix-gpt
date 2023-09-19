@@ -1,4 +1,4 @@
-import { OPENAI_KEY } from "./constants";
+import { OPENAI_KEY } from "../constants";
 import OpenAI from "openai";
 
 const openai = new OpenAI({

@@ -1,5 +1,5 @@
-import { API_OPTIONS } from "./constants";
-import openai from "./openai";
+import { API_OPTIONS } from "../constants";
+import openai from "../config/openai";
 
 // search movie in TMDB
 const searchMovieTMDB = async (movie) => {
